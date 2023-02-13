@@ -380,12 +380,6 @@ class Build
         '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
       ].compact.join(':')
 
-      if options[:webrender]
-        configure_flags << '--with-webrender'
-      end
-      if !options[:ns]
-        configure_flags << '--without-ns'
-      end
       configure_flags = [
         '--with-modules',
         '--enable-locallisppath=' \
@@ -393,9 +387,19 @@ class Build
         '/Library/Application Support/Emacs/site-lisp:' \
         '/usr/local/share/emacs/site-lisp'
       ]
+
+      if options[:webrender]
+        configure_flags << '--with-webrender'
+      end
+
+      if !options[:ns]
+        configure_flags << '--without-ns'
+      end
+
       if options[:xwidgets] && supports_xwidgets?
         configure_flags << '--with-xwidgets'
       end
+
       if options[:tree_sitter] && supports_tree_sitter?
         configure_flags << '--with-tree-sitter'
       end
