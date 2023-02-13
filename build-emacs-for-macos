@@ -1264,7 +1264,7 @@ if __FILE__ == $PROGRAM_NAME
     dbus: true,
     ns: true,
     webrender: false,
-    xwidgets: true,
+    xwidgets: false,
     tree_sitter: true,
     github_auth: true,
     dist_include: ['COPYING'],
