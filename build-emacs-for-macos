@@ -1295,9 +1295,21 @@ if __FILE__ == $PROGRAM_NAME
         cli_options[:git_sha] = v
       end
 
+      opts.on('--[no-]webrender',
+              'Enable/disable Webrender ' \
+              '(default: disabled)') do |v|
+        cli_options[:webrender] = v
+      end
+
+      opts.on('--[no-]ns',
+              'Enable/disable NS if supported ' \
+              '(default: enabled)') do |v|
+        cli_options[:ns] = v
+      end
+
       opts.on('--[no-]xwidgets',
               'Enable/disable XWidgets if supported ' \
-              '(default: enabled)') do |v|
+              '(default: disabled)') do |v|
         cli_options[:xwidgets] = v
       end
 
