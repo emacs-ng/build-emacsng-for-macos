@@ -383,8 +383,8 @@ class Build
       if options[:webrender]
         configure_flags << '--with-webrender'
       end
-      if options[:ns]
-        configure_flags << '--with-ns'
+      if !options[:ns]
+        configure_flags << '--without-ns'
       end
       configure_flags = [
         '--with-modules',
