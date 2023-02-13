@@ -85,18 +85,18 @@ func Create(ctx context.Context, opts *Options) (*Plan, error) { //nolint:funlen
 	var releaseName string
 	switch channel {
 	case release.Stable, release.RC:
-		releaseName = "Emacs-" + version
+		releaseName = "EmacsNG-" + version
 	case release.Pretest:
 		version += "-pretest"
 		absoluteVersion += "-pretest"
-		releaseName = "Emacs-" + version
+		releaseName = "EmacsNG-" + version
 	default:
 		version = absoluteVersion
-		releaseName = "Emacs." + version
+		releaseName = "EmacsNG." + version
 	}
 
 	buildName := fmt.Sprintf(
-		"Emacs.%s.%s.%s",
+		"EmacsNG.%s.%s.%s",
 		absoluteVersion,
 		sanitize.String(osInfo.Name+"-"+osInfo.DistinctVersion()),
 		sanitize.String(osInfo.Arch),

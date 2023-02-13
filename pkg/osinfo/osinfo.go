@@ -13,7 +13,7 @@ type OSInfo struct {
 }
 
 func New() (*OSInfo, error) {
-	version, err := exec.Command("sw_vers", "-productVersion").CombinedOutput()
+	version, err := exec.Command("uname", "-r").CombinedOutput()
 	if err != nil {
 		return nil, err
 	}
@@ -24,7 +24,7 @@ func New() (*OSInfo, error) {
 	}
 
 	return &OSInfo{
-		Name:    "macOS",
+		Name:    "darwin",
 		Version: strings.TrimSpace(string(version)),
 		Arch:    strings.TrimSpace(string(arch)),
 	}, nil
