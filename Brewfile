@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+tap "d/tap-rust", "https://git@git.sr.ht/~declantsien/guix-channel/"
 brew 'autoconf'
 brew 'coreutils'
 brew 'dbus'
@@ -26,3 +27,4 @@ brew 'sqlite'
 brew 'texinfo'
 brew 'tree-sitter'
 brew 'zlib'
+brew 'rust-nightly-2022-10-24'

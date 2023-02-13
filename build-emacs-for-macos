@@ -86,8 +86,8 @@ class Build
   include Output
   include System
 
-  EMACS_MIRROR_REPO = 'emacs-mirror/emacs'
-  DOWNLOAD_URL = 'https://github.com/emacs-mirror/emacs/tarball/%s'
+  EMACS_MIRROR_REPO = 'emacs-ng/emacs-ng'
+  DOWNLOAD_URL = 'https://github.com/emacs-ng/emacs-ng/tarball/%s'
 
   attr_reader :root_dir
   attr_reader :source_dir
@@ -190,7 +190,7 @@ class Build
     FileUtils.mkdir_p(tarballs_dir)
 
     url = (DOWNLOAD_URL % sha)
-    filename = "emacs-mirror-emacs-#{sha[0..6]}.tgz"
+    filename = "emacs-ng-emacs-ng-#{sha[0..6]}.tgz"
     target = File.join(tarballs_dir, filename)
 
     if File.exist?(target)
@@ -380,8 +380,13 @@ class Build
         '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
       ].compact.join(':')
 
+      if options[:webrender]
+        configure_flags << '--with-webrender'
+      end
+      if options[:ns]
+        configure_flags << '--with-ns'
+      end
       configure_flags = [
-        '--with-ns',
         '--with-modules',
         '--enable-locallisppath=' \
         '/Library/Application Support/Emacs/${version}/site-lisp:' \
@@ -1257,6 +1262,8 @@ if __FILE__ == $PROGRAM_NAME
     parallel: Etc.nprocessors,
     rsvg: true,
     dbus: true,
+    ns: true,
+    webrender: false,
     xwidgets: true,
     tree_sitter: true,
     github_auth: true,
