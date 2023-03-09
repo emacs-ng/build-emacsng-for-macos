@@ -390,6 +390,9 @@ class Build
 
       if options[:webrender]
         configure_flags << '--with-webrender'
+        if !options[:ns]
+          configure_flags << '--with-winit'
+        end
       end
 
       if !options[:ns]
